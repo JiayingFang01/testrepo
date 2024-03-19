@@ -30,7 +30,7 @@ from pyspark.sql.types import IntegerType
 
 # COMMAND ----------
 
-df_driver = df_driver.withColumn('age', datediff(current_date(), df_driver.dob))
+df_driver = df_driver.withColumn('age', datediff(current_date(), df_driver.dob)/365)
 # now in the age column, should transfer the days to the years
 
 # COMMAND ----------
@@ -67,7 +67,7 @@ display(df_lap_drivers)
 
 # COMMAND ----------
 
-df_lap_drivers.write.csv('s3://jf3583-gr5069/processed/in_class_workshop/laptimes_by_drivers.csv')
+df_lap_drivers.write.csv('s3://jf3583-gr5069/processed/in_class_workshop/laptimes_by_drivers.csv', mode='overwrite')
 
 # COMMAND ----------
 
